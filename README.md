@@ -92,7 +92,7 @@ function* test(){
 wait.launchFiber(test); 
 ```
 
-Alternative, **fancy syntax**, *omiting* **wait.for** (see [The funny thing is...](#the-funny-thing-is))
+Alternative, **fancy syntax**, *omiting* **wait.for** 
 ```javascript
 function* getReverse(addr){
     return yield [dns.reverse,addr];
