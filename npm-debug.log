@@ -1,0 +1,28 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node-v0.11.6',
+1 verbose cli   'C:\\node\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'start' ]
+2 info using npm@1.3.14
+3 info using node@v0.11.6
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart parallel-es6@0.0.1
+6 info start parallel-es6@0.0.1
+7 verbose unsafe-perm in lifecycle true
+8 info parallel-es6@0.0.1 Failed to exec start script
+9 error parallel-es6@0.0.1 start: `node --harmony examples/blogServer/server`
+9 error Exit status 8
+10 error Failed at the parallel-es6@0.0.1 start script.
+10 error This is most likely a problem with the parallel-es6 package,
+10 error not with npm itself.
+10 error Tell the author that this fails on your system:
+10 error     node --harmony examples/blogServer/server
+10 error You can get their info via:
+10 error     npm owner ls parallel-es6
+10 error There is likely additional logging output above.
+11 error System Windows_NT 6.1.7601
+12 error command "node-v0.11.6" "C:\\node\\node_modules\\npm\\bin\\npm-cli.js" "start"
+13 error cwd C:\node-projects\parallel-ES6
+14 error node -v v0.11.6
+15 error npm -v 1.3.14
+16 error code ELIFECYCLE
+17 verbose exit [ 1, true ]

@@ -1,7 +1,8 @@
 var fs = require('fs');
 var http = require('http');
 var dns = require('dns');
-var wait = require('../../waitfor');
+var wait = require('wait.for-es6');
+var parallel = require('../../parallel.js');  //require('parallel-es6');
 
 //------------------------------
 // TEST APP - dummy blog server
@@ -44,6 +45,11 @@ function applyTemplate(template, content){
   return template.replace('{{ content }}', content);
 }
 
+//------------------------------
+function* read(fName){
+  return yield wait.for(fs.readFile, 'examples/blogServer/'+fName,'utf8');
+}
+
 // Get client IP address from request object ---
 function getClientAddress(req) {
         return (req.headers['x-forwarded-for'] || '').split(',')[0] 
@@ -65,23 +71,19 @@ function* handler(req,res){  // function* => generator
           var start = new Date().getTime();
           //console.log(start);
 
-          //read css (wait.for syntax)
-          var css = yield wait.for(fs.readFile,'style.css','utf8');
+          var files=['style.css', 'blogTemplate.html', 'blogPost.txt'];
+          //parallel read all required files
+          var contents = yield wait.for ( parallel.map, files, read );
 
           //compose  template
-          var template = composeTemplate ( css, yield wait.for(fs.readFile,'blogTemplate.html','utf8') );
-
-          //read post (fancy syntax)
-          var content = yield [fs.readFile,'blogPost.txt','utf8'];
+          var template = composeTemplate ( contents[0], contents[1]);
 
           //translate post (log operation,api call, normally a callback hell)
-          var translated = yield wait.for(translateAsync,content);
+          var translated = yield wait.for(translateAsync, contents[2]);
 
           res.write(applyTemplate(template, formatPost(translated)));
 
           //another async call
-          res.write('google ips: '+JSON.stringify(yield wait.for(dns.resolve4, 'google.com')));
-
           return res.end();
 
         default:
@@ -106,4 +108,4 @@ var server = http.createServer(
   
 console.log('server started on port', 8000);
 
-
+

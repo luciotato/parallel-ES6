@@ -34,6 +34,7 @@ var Parallel = {
         //
         // fiberFn = function*(item,index,arr) -> returns item mapped
         //
+        console.log(typeof fiberFn);
         var mapResult={arr:[],count:0,expected:arr.length};
         if (mapResult.expected===0) return finalCallback(null,mapResult.arr); //early exit
 

@@ -6,7 +6,7 @@ check first: [Wait.for-ES6] (http://github.com/luciotato/waitfor-ES6),
 
 ***Simple, straightforward abstraction.***
 
-By using *parallel* and **wait.for**, you can call any nodejs standard async function in sequential/Sync mode, waiting for result data, 
+By using **wait.for** and *parallel*, you can call any nodejs standard async function in sequential/Sync mode or in parallel, waiting for result data, 
 without blocking node's event loop.
 
 Definitions:
@@ -109,4 +109,5 @@ wait.launchFiber(test);
 More examples:
 
 * see  [test.js] (http://github.com/luciotato/parallel-ES6/tree/master/test) 
+* see  [blogServer.js] (http://github.com/luciotato/parallel-ES6/tree/master/examples/blogServer) 
 

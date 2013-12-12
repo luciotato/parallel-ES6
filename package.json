@@ -21,7 +21,11 @@
   "engines" : {
     "node" : ">=0.11.6"
   }
+,"scripts": {
+    "test": "node --harmony test/test"
+    ,"start": "node --harmony examples/blogServer/server"
+  }  
   ,"dependencies": {
-        "wait.for-es6": ">=0.0.1"
+        "wait.for-es6": ">=0.0.3"
    }
 }
